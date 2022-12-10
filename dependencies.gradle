@@ -1,0 +1,41 @@
+ext {
+    //Android Core
+    compileSdkVersion = 29
+    targetSdkVersion = 29
+    minSdkVersion = 19
+    buildToolsVersion = "29.0.2"
+
+    //Dependencies Version - Presentation
+    appcompatVersion = '1.1.0'
+    androidxCoreKtxVersion = '1.2.0'
+    constraintLayoutVersion = '1.1.3'
+    supportV4Version = '1.0.0'
+    fragmentKtxVersion = '1.1.0'
+    materialVersion = '1.1.0'
+    lifecycleExtensionsVersion = '2.1.0'
+    cardViewVersion = '1.0.0'
+    glideVersion = '4.10.0'
+    recyclerviewAnimationVersion = '4.0.2'
+    shimmerAnimationVersion = '0.5.0'
+    multidexVersion = "2.0.1"
+
+
+    //App/Presentation Layer
+    appDependencies = [
+            kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            appCompat             : "androidx.appcompat:appcompat:$appcompatVersion",
+            androidxKtx           : "androidx.core:core-ktx:$androidxCoreKtxVersion",
+            constraintLayout      : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            supportV4             : "androidx.legacy:legacy-support-v4:$supportV4Version",
+            fragmentKtx           : "androidx.fragment:fragment-ktx:$fragmentKtxVersion",
+            material              : "com.google.android.material:material:$materialVersion",
+            lifecycleExtensions   : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion",
+            lifecycleViewModel    : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleExtensionsVersion",
+            cardview              : "androidx.cardview:cardview:$cardViewVersion",
+            glide                 : "com.github.bumptech.glide:glide:$glideVersion",
+            glideCompiler         : "com.github.bumptech.glide:compiler:$glideVersion",
+            recyclerviewAnimations: "jp.wasabeef:recyclerview-animators:$recyclerviewAnimationVersion",
+            shimmerAnimation      : "com.facebook.shimmer:shimmer:$shimmerAnimationVersion",
+            multidex              : "androidx.multidex:multidex:$multidexVersion",
+    ]
+}

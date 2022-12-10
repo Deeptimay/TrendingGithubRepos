@@ -1,4 +1,4 @@
-package com.example.trendinggithubrepos
+package com.deeptimay.trendinggithubrepos
 
 import org.junit.Test
 

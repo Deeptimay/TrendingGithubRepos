@@ -1,12 +1,42 @@
 <resources>
-    <string name="app_name">TrendingGithubRepos</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="app_name">Github Trend</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!--Commons-->
+    <string name="common_ok">OK</string>
+    <string name="common_cancel">Cancel</string>
+
+    <!--Fonts-->
+    <string name="roboto_thin" translatable="false">roboto_thin</string>
+    <string name="roboto_light" translatable="false">roboto_light</string>
+    <string name="roboto_regular" translatable="false">roboto_regular</string>
+    <string name="roboto_medium" translatable="false">roboto_medium</string>
+    <string name="roboto_bold" translatable="false">roboto_bold</string>
+    <string name="roboto_regular_italic" translatable="false">roboto_italic</string>
+    <string name="roboto_medium_italic" translatable="false">roboto_medium_italic</string>
+
+    <!--Common Info-->
+    <string name="info_again_exit">Press again to exit</string>
+    <string name="info_gamification_message">Don\'t worry, it\'s not you - it\'s us. Sorry about that.</string>
+
+    <!--Common Errors-->
+    <string name="error_no_browser">You don\'t have any browser to open web page</string>
+    <string name="error_something_went_wrong">Something went wrong..</string>
+    <string name="error_offline_test_scenario">Disable data connection to see offline behaviour</string>
+
+    <!--Common Actions-->
+    <string name="action_retry">Retry</string>
+
+    <!-- Trending Repo Search -->
+    <string name="label_sort_by_stars">Sort by stars</string>
+    <string name="label_sort_by_name">Sort by name</string>
+    <string name="label_sorted_by_star">Sorted by repository stars</string>
+    <string name="label_sorted_repo_name">Sorted by repository name</string>
+    <string name="title_trending">Trending</string>
+
+    <!--  Data Binding String Templates-->
+    <string name="content_desc_avatar">Avatar</string>
+    <string name="label_no_times">No Items Found</string>
+    <string name="label_unknown">Unknown</string>
+    <string name="action_settings">action settings</string>
+
 </resources>
