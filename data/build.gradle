@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+
+    //Local libs
+    api project(':domain')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Dependency Injection
+    implementation dataDependencies.kotlin
+    api dataDependencies.retrofit
+    api dataDependencies.moshiConverter
+    api dataDependencies.loggingInterceptor
+    implementation dataDependencies.coroutinesCore
+
+}

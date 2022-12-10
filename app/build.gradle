@@ -64,6 +64,7 @@ dependencies {
 
     //Material
     implementation appDependencies.material
+    implementation appDependencies.paging
 
     //Animations
     implementation appDependencies.recyclerviewAnimations
@@ -74,5 +75,15 @@ dependencies {
     //Multidex
     implementation appDependencies.multidex
 
+    // network
+    implementation appDependencies.retrofit
+    implementation appDependencies.googleGson
+    implementation appDependencies.gsonConverter
+
+    // dagger hilt
+    kapt appDependencies.hiltCompiler
+    implementation appDependencies.hiltAndroid
+    kapt appDependencies.androidxHiltCompiler
+    implementation appDependencies.hiltLifecycle
 
 }
