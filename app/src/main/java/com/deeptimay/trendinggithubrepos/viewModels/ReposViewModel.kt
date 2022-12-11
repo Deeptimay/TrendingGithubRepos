@@ -23,6 +23,10 @@ class ReposViewModel @Inject constructor(
         currentQuery.value = query
     }
 
+    fun searchReposLocal(query: String) {
+        currentQuery.value = query
+    }
+
     companion object {
         private const val DEFAULT_QUERY = "Q"
     }

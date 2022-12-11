@@ -12,12 +12,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.ItemSnapshotList
 import androidx.paging.LoadState
 import com.deeptimay.trendinggithubrepos.R
 import com.deeptimay.trendinggithubrepos.R.layout.activity_trending_repository
 import com.deeptimay.trendinggithubrepos.adapter.ReposAdapter
 import com.deeptimay.trendinggithubrepos.adapter.ReposLoadStateAdapter
 import com.deeptimay.trendinggithubrepos.data.model.Languages
+import com.deeptimay.trendinggithubrepos.data.model.Repo
 import com.deeptimay.trendinggithubrepos.databinding.ActivityTrendingRepositoryBinding
 import com.deeptimay.trendinggithubrepos.util.hide
 import com.deeptimay.trendinggithubrepos.util.show
@@ -29,29 +31,30 @@ import java.util.*
 class TrendingRepoSearchActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ReposViewModel
-    lateinit var binding: ActivityTrendingRepositoryBinding
+    private lateinit var binding: ActivityTrendingRepositoryBinding
+    lateinit var reposAdapter: ReposAdapter
+    private var repoList: ItemSnapshotList<Repo>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, activity_trending_repository)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this).get(ReposViewModel::class.java)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val adapter = ReposAdapter()
+        viewModel = ViewModelProvider(this).get(ReposViewModel::class.java)
 
+        displayLoadingState()
+
+        reposAdapter = ReposAdapter()
         binding.apply {
-
-            rvRepository.apply {
+            binding.rvRepository.apply {
                 setHasFixedSize(true)
                 itemAnimator = null
-                this.adapter = adapter.withLoadStateHeaderAndFooter(
-                    header = ReposLoadStateAdapter { adapter.retry() },
-                    footer = ReposLoadStateAdapter { adapter.retry() }
+                this.adapter = reposAdapter.withLoadStateHeaderAndFooter(
+                    header = ReposLoadStateAdapter { reposAdapter.retry() },
+                    footer = ReposLoadStateAdapter { reposAdapter.retry() }
                 )
                 postponeEnterTransition()
                 viewTreeObserver.addOnPreDrawListener {
@@ -61,16 +64,15 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
             }
 
             binding.layoutError.lookUpButton.setOnClickListener {
-                adapter.retry()
+                reposAdapter.retry()
             }
         }
 
         viewModel.repos.observe(this) {
-            adapter.submitData(this.lifecycle, it)
+            reposAdapter.submitData(this.lifecycle, it)
         }
 
-        adapter.addLoadStateListener { loadState ->
-
+        reposAdapter.addLoadStateListener { loadState ->
             binding.apply {
                 when (loadState.source.refresh) {
                     is LoadState.Loading -> {
@@ -87,7 +89,7 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
                 // no results found
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached &&
-                    adapter.itemCount < 1
+                    reposAdapter.itemCount < 1
                 ) {
 //                    displayErrorState()
                 } else {
@@ -127,6 +129,10 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
                 binding.rvRepository.scrollToPosition(0)
                 val languageQuery = String.format(getString(R.string.query), queryString)
                 viewModel.searchRepos(languageQuery)
+
+//                repoList = reposAdapter.snapshot()
+//
+//                reposAdapter.submitData(this.lifecycle, repoList.)
                 searchView.clearFocus()
                 (this as AppCompatActivity).supportActionBar?.title = queryString.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
             }
@@ -144,7 +150,6 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
         }
     }
 
-
     private fun displayErrorState() {
         binding.layoutError.clErrorMain.show()
         binding.rvRepository.hide()
@@ -156,7 +161,7 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
         binding.layoutError.clErrorMain.hide()
         binding.rvRepository.hide()
         binding.loadingLayout.containerShimmer.show()
-        binding.loadingLayout.containerShimmer.showShimmer(true)
+        binding.loadingLayout.containerShimmer.startShimmer()
     }
 
     private fun hideLoadingState() {

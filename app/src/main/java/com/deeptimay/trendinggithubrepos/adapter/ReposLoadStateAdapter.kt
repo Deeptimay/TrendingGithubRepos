@@ -26,23 +26,29 @@ class ReposLoadStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<Re
         init {
             binding.lookUpButton.setOnClickListener {
                 retry.invoke()
+                binding.loadingLayout.containerShimmer.show()
+                binding.loadingLayout.containerShimmer.startShimmer()
             }
         }
 
         fun bind(loadState: LoadState) {
             binding.apply {
-                if (loadState is LoadState.Error) {
-                    binding.lookUpButton.show()
-                    binding.loadingLayout.containerShimmer.hide()
-                    binding.loadingLayout.containerShimmer.stopShimmer()
-                } else if (loadState is LoadState.Loading) {
-                    binding.lookUpButton.hide()
-                    binding.loadingLayout.containerShimmer.show()
-                    binding.loadingLayout.containerShimmer.showShimmer(true)
-                } else {
-                    binding.lookUpButton.hide()
-                    binding.loadingLayout.containerShimmer.hide()
-                    binding.loadingLayout.containerShimmer.stopShimmer()
+                when (loadState) {
+                    is LoadState.Error -> {
+                        binding.lookUpButton.show()
+                        binding.loadingLayout.containerShimmer.hide()
+                        binding.loadingLayout.containerShimmer.stopShimmer()
+                    }
+                    is LoadState.Loading -> {
+                        binding.lookUpButton.hide()
+                        binding.loadingLayout.containerShimmer.show()
+                        binding.loadingLayout.containerShimmer.startShimmer()
+                    }
+                    else -> {
+                        binding.lookUpButton.hide()
+                        binding.loadingLayout.containerShimmer.hide()
+                        binding.loadingLayout.containerShimmer.stopShimmer()
+                    }
                 }
             }
         }
