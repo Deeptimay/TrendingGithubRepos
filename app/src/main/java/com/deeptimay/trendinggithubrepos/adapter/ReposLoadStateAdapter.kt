@@ -38,9 +38,6 @@ class ReposLoadStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<Re
                     containerShimmer.hide()
                     containerShimmer.stopShimmer()
                 }
-//                progress.isVisible = loadState is LoadState.Loading
-//                btnRetry.isVisible = loadState !is LoadState.Loading
-//                error.isVisible = loadState !is LoadState.Loading
             }
         }
     }

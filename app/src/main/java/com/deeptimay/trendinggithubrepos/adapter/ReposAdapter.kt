@@ -73,11 +73,7 @@ class ReposAdapter : PagingDataAdapter<Repo, ReposAdapter.ViewHolder>(REPO_COMPA
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
                 tvUsername.text = str
-
-//                tvUsername.text = repo.owner?.login
-//                tvRepoName.text = repo.name
                 tvRepoDesc.text = repo.description
-
                 tvRepoLang.text = repo.language
                 tvRepoStars.text = repo.stargazersCount.toString()
                 tvRepoFork.text = repo.forksCount.toString()
@@ -86,7 +82,6 @@ class ReposAdapter : PagingDataAdapter<Repo, ReposAdapter.ViewHolder>(REPO_COMPA
 
                 root.setOnClickListener(listener)
             }
-
         }
     }
 }

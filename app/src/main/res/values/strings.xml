@@ -38,5 +38,8 @@
     <string name="label_no_times">No Items Found</string>
     <string name="label_unknown">Unknown</string>
     <string name="action_settings">action settings</string>
+    <string name="search">Search</string>
+    <string name="search_query">%s</string>
+    <string name="query">language:%s</string>
 
 </resources>
