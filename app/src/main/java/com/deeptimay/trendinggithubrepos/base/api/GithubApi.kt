@@ -1,6 +1,5 @@
 package com.deeptimay.trendinggithubrepos.base.api
 
-import com.deeptimay.trendinggithubrepos.data.model.RepoSearchResponse
 import com.deeptimay.trendinggithubrepos.data.model.TrendingRepoResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
