@@ -10,7 +10,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:padding="@dimen/margin_default">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivUserAvatar"
             android:layout_width="@dimen/dimen_avatar"
             android:layout_height="@dimen/dimen_avatar"
@@ -21,12 +21,14 @@
 
         <com.deeptimay.trendinggithubrepos.widget.CustomTextView
             android:id="@+id/tvUsername"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_placeholder_username_leading_margin"
+            android:ellipsize="end"
             android:lines="1"
             android:textColor="@color/colorSecondary"
-            android:textSize="@dimen/md_text_size_micro"
+            android:textSize="@dimen/md_text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivUserAvatar"
             app:layout_constraintTop_toTopOf="parent"
             app:textFont="regular"
@@ -37,9 +39,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/md_margin_padding_size_small"
+            android:ellipsize="end"
             android:lines="1"
             android:textColor="@color/colorGrey800"
             android:textSize="@dimen/md_text_size_medium"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/tvUsername"
             app:layout_constraintTop_toBottomOf="@id/tvUsername"
             app:textFont="regular"
@@ -47,74 +51,97 @@
 
         <com.deeptimay.trendinggithubrepos.widget.CustomTextView
             android:id="@+id/tvRepoDesc"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_repo_desc_margin"
+            android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/colorGrey800"
-            android:textSize="@dimen/md_text_size_small"
-            app:layout_constraintEnd_toEndOf="@id/tvRepoName"
+            android:textSize="@dimen/md_text_size_micro"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvUsername"
-            app:layout_constraintTop_toBottomOf="@id/tvRepoName"
+            app:layout_constraintTop_toBottomOf="@id/tvUsername"
             app:textFont="regular"
             tools:text="Repo Desc" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDot"
+            android:layout_width="@dimen/_18dp"
+            android:layout_height="@dimen/_18dp"
+            android:layout_marginStart="@dimen/dimen_placeholder_username_leading_margin"
+            android:layout_marginTop="@dimen/dimen_repo_lang_margin"
+            android:padding="@dimen/_5dp"
+            app:layout_constraintStart_toEndOf="@id/ivUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/tvRepoDesc"
+            app:srcCompat="@drawable/drawable_cricle_lang" />
 
         <com.deeptimay.trendinggithubrepos.widget.CustomTextView
             android:id="@+id/tvRepoLang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_placeholder_username_leading_margin"
-            android:layout_marginTop="@dimen/dimen_repo_lang_margin"
-            android:drawableStart="@drawable/drawable_cricle_lang"
-            android:drawablePadding="@dimen/md_margin_padding_size_small"
+            android:layout_marginStart="@dimen/_5dp"
             android:lines="1"
             android:textColor="@color/colorGrey800"
-            android:textSize="@dimen/md_text_size_small"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@id/ivUserAvatar"
-            app:layout_constraintTop_toBottomOf="@id/tvRepoDesc"
+            android:textSize="@dimen/md_text_size_micro"
+            app:layout_constraintBottom_toBottomOf="@+id/ivDot"
+            app:layout_constraintStart_toEndOf="@id/ivDot"
+            app:layout_constraintTop_toTopOf="@+id/ivDot"
             app:textFont="regular"
             tools:text="Android" />
 
-        <com.deeptimay.trendinggithubrepos.widget.CustomTextView
-            android:id="@+id/tvRepoStars"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/md_margin_padding_size_medium"
-            android:layout_marginTop="@dimen/md_margin_padding_size_small"
-            android:drawableStart="@drawable/ic_repo_starts"
-            android:drawablePadding="@dimen/md_margin_padding_size_small"
-            android:lines="1"
-            android:textColor="@color/colorGrey800"
-            android:textSize="@dimen/md_text_size_small"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@+id/tvRepoLang"
-            app:layout_constraintTop_toBottomOf="@id/tvRepoDesc"
-            app:textFont="regular"
-            tools:text="10000" />
+            android:layout_marginTop="@dimen/dimen_repo_lang_margin"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/tvUsername"
+            app:layout_constraintTop_toBottomOf="@id/tvRepoLang">
 
-        <com.deeptimay.trendinggithubrepos.widget.CustomTextView
-            android:id="@+id/tvRepoFork"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/md_margin_padding_size_medium"
-            android:drawableStart="@drawable/ic_repo_fork"
-            android:drawablePadding="@dimen/md_margin_padding_size_small"
-            android:lines="1"
-            android:textColor="@color/colorGrey800"
-            android:textSize="@dimen/md_text_size_small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@+id/tvRepoStars"
-            app:layout_constraintTop_toTopOf="@+id/tvRepoStars"
-            app:textFont="regular"
-            tools:text="100" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_18dp"
+                android:layout_height="@dimen/_18dp"
+                app:srcCompat="@drawable/ic_repo_starts" />
+
+            <com.deeptimay.trendinggithubrepos.widget.CustomTextView
+                android:id="@+id/tvRepoStars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:lines="1"
+                android:textColor="@color/colorGrey800"
+                android:textSize="@dimen/md_text_size_micro"
+                app:layout_constraintStart_toEndOf="@id/ivUserAvatar"
+                app:layout_constraintTop_toBottomOf="@id/tvRepoLang"
+                app:textFont="regular"
+                tools:text="10000" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_18dp"
+                android:layout_height="@dimen/_18dp"
+                android:layout_marginStart="@dimen/_15dp"
+                app:srcCompat="@drawable/ic_repo_fork" />
+
+            <com.deeptimay.trendinggithubrepos.widget.CustomTextView
+                android:id="@+id/tvRepoFork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:lines="1"
+                android:textColor="@color/colorGrey800"
+                android:textSize="@dimen/md_text_size_micro"
+                app:layout_constraintStart_toEndOf="@id/tvRepoStars"
+                app:layout_constraintTop_toBottomOf="@id/tvRepoLang"
+                app:textFont="regular"
+                tools:text="100" />
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/groupExpansion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             app:constraint_referenced_ids="tvRepoDesc,tvRepoStars,tvRepoFork,tvRepoLang" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

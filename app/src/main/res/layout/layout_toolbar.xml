@@ -11,10 +11,11 @@
         android:id="@+id/toolbarTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
         android:layout_gravity="center_horizontal"
+        android:ellipsize="end"
         android:gravity="center"
         android:lines="1"
+        android:text="Trending"
         android:textSize="@dimen/md_text_size_large"
         app:textFont="medium"
         tools:text="Trending" />

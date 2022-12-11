@@ -1,10 +1,9 @@
 package com.deeptimay.trendinggithubrepos.activities
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.paging.LoadState
 import com.deeptimay.trendinggithubrepos.R.layout.activity_trending_repository
 import com.deeptimay.trendinggithubrepos.adapter.ReposAdapter
@@ -18,15 +17,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TrendingRepoSearchActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<ReposViewModel>()
+    private lateinit var viewModel: ReposViewModel
     lateinit var binding: ActivityTrendingRepositoryBinding
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, activity_trending_repository)
+        setContentView(binding.root)
+        viewModel = ViewModelProvider(this).get(ReposViewModel::class.java)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        displayLoadingState()
         val adapter = ReposAdapter()
 
         binding.apply {
@@ -79,13 +80,15 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
                 ) {
 //                    recycler.isVisible = false
 //                    emptyTv.isVisible = true
-                    displayErrorState()
+//                    displayErrorState()
                 } else {
 //                    emptyTv.isVisible = false
-                    hideLoadingState()
+//                    hideLoadingState()
                 }
             }
         }
+
+
 
 //        setHasOptionsMenu(true)
     }

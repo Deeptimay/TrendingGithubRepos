@@ -47,6 +47,9 @@ android {
 dependencies {
     def appDependencies = rootProject.ext.appDependencies
 
+    //Local libs
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     //Standards
     implementation appDependencies.kotlin
     implementation appDependencies.appCompat
@@ -77,6 +80,7 @@ dependencies {
     implementation appDependencies.retrofit
     implementation appDependencies.googleGson
     implementation appDependencies.gsonConverter
+    implementation appDependencies.loggingInterceptor
 
     // dagger hilt
     kapt appDependencies.hiltCompiler

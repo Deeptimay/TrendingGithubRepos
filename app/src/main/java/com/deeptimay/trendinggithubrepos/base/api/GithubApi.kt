@@ -7,10 +7,6 @@ import retrofit2.http.Query
 
 interface GithubApi {
 
-    companion object {
-        const val BASE_URL = "https://api.github.com/"
-    }
-
     @Headers(
         "Accept: application/vnd.github+json",
         "Authorization: Bearer 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",

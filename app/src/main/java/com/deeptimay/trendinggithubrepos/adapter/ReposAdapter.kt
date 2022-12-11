@@ -1,5 +1,9 @@
 package com.deeptimay.trendinggithubrepos.adapter
 
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,17 +65,17 @@ class ReposAdapter : PagingDataAdapter<Repo, ReposAdapter.ViewHolder>(REPO_COMPA
                     .error(android.R.drawable.stat_notify_error)
                     .into(ivUserAvatar)
 
-//                val str = SpannableString((repo.owner?.login ?: "") + " / " + repo.name)
-//                str.setSpan(
-//                    StyleSpan(Typeface.BOLD),
-//                    repo.owner?.login?.length ?: 0,
-//                    str.length,
-//                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//                )
-//                name.text = str
+                val str = SpannableString((repo.owner?.login ?: "") + " / " + repo.name)
+                str.setSpan(
+                    StyleSpan(Typeface.NORMAL),
+                    repo.owner?.login?.length ?: 0,
+                    str.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                tvUsername.text = str
 
-                tvUsername.text = repo.owner?.login
-                tvRepoName.text = repo.name
+//                tvUsername.text = repo.owner?.login
+//                tvRepoName.text = repo.name
                 tvRepoDesc.text = repo.description
 
                 tvRepoLang.text = repo.language
