@@ -25,5 +25,4 @@ object AppModule {
     @Singleton
     fun provideTrendingApi(retrofit: Retrofit): GithubApi =
         retrofit.create(GithubApi::class.java)
-
 }

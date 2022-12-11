@@ -1,9 +1,9 @@
 ext {
     //Android Core
-    compileSdkVersion = 32
-    targetSdkVersion = 32
+    compileSdkVersion = 30
+    targetSdkVersion = 30
     minSdkVersion = 19
-    buildToolsVersion = "29.0.2"
+    buildToolsVersion = "33.0.1"
 
     //Dependencies Version - Presentation
     appcompatVersion = '1.1.0'

@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.deeptimay.trendinggithubrepos">
 
-    <uses-sdk tools:overrideLibrary="jp.wasabeef.recyclerview"/>
+    <uses-sdk tools:overrideLibrary="jp.wasabeef.recyclerview" />
 
     <application
+        android:name=".GithubTrendingReposApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"

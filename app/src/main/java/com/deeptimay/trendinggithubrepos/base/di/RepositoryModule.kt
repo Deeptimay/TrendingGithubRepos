@@ -12,5 +12,4 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
     @Binds
     abstract fun providesGithubRepository(impl: GithubRepositoryImpl): GithubRepository
-
 }

@@ -3,10 +3,13 @@ package com.deeptimay.trendinggithubrepos.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
-import com.deeptimay.trendinggithubrepos.data.GithubPagingSource
 import com.deeptimay.trendinggithubrepos.base.api.GithubApi
+import com.deeptimay.trendinggithubrepos.data.GithubPagingSource
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class GithubRepositoryImpl  constructor(private val githubApi: GithubApi): GithubRepository {
+@Singleton
+class GithubRepositoryImpl @Inject constructor(private val githubApi: GithubApi) : GithubRepository {
 
     override fun getSearchResults(query: String) =
         Pager(

@@ -19,7 +19,7 @@ class GithubPagingSource(
 
         return try {
             val response = githubApi.getTrendingRepos(query, position, params.loadSize)
-            val repos = response.items
+            val repos = response.repo
 
             LoadResult.Page(
                 data = repos,
