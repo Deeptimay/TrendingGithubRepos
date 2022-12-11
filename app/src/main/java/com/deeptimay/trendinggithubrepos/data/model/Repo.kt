@@ -81,5 +81,6 @@ data class Repo(
     @SerializedName("archived") var archived: Boolean? = null,
     @SerializedName("disabled") var disabled: Boolean? = null,
     @SerializedName("visibility") var visibility: String? = null,
-    @SerializedName("license") var license: License? = License()
+    @SerializedName("license") var license: License? = License(),
+    var isSelectedItem: Boolean = false
 ) : Parcelable

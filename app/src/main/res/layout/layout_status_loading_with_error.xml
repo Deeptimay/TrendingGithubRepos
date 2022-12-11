@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/drawable_divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <include
+            android:id="@+id/loadingLayout"
+            layout="@layout/layout_status_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.deeptimay.trendinggithubrepos.widget.CustomButton
+            android:id="@+id/lookUpButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/md_standard_button_size"
+            android:layout_margin="@dimen/margin_default"
+            android:background="@color/colorPrimary"
+            android:text="@string/action_retry"
+            android:textAllCaps="true"
+            android:textColor="@color/colorGreen800"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/md_margin_padding_size_micro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:rippleColor="@color/colorGreen100"
+            app:strokeColor="@color/colorGreen800"
+            app:textFont="medium" />
+    </LinearLayout>
+</layout>

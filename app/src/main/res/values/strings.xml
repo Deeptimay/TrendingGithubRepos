@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Github Trend</string>
+    <string name="app_name">Github Trending</string>
 
     <!--Commons-->
     <string name="common_ok">OK</string>

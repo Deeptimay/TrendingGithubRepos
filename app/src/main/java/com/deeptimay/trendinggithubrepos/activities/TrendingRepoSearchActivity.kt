@@ -42,7 +42,6 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-//        displayLoadingState()
         val adapter = ReposAdapter()
 
         binding.apply {
@@ -90,12 +89,9 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
                     loadState.append.endOfPaginationReached &&
                     adapter.itemCount < 1
                 ) {
-//                    recycler.isVisible = false
-//                    emptyTv.isVisible = true
-                    displayErrorState()
+//                    displayErrorState()
                 } else {
-//                    emptyTv.isVisible = false
-                    hideLoadingState()
+//                    hideLoadingState()
                 }
             }
         }
@@ -169,5 +165,4 @@ class TrendingRepoSearchActivity : AppCompatActivity() {
         binding.loadingLayout.containerShimmer.hide()
         binding.loadingLayout.containerShimmer.stopShimmer()
     }
-
 }

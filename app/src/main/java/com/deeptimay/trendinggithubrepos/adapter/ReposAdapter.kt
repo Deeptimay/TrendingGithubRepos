@@ -1,5 +1,6 @@
 package com.deeptimay.trendinggithubrepos.adapter
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableString
@@ -36,19 +37,16 @@ class ReposAdapter : PagingDataAdapter<Repo, ReposAdapter.ViewHolder>(REPO_COMPA
             with(holder) {
                 itemView.tag = repo
                 if (repo != null) {
-                    bind(createOnClickListener(binding, repo), repo)
+                    bind(createOnClickListener(binding, repo, position), repo)
                 }
             }
         }
     }
 
-    private fun createOnClickListener(binding: ItemTrendingRepoBinding, repo: Repo): View.OnClickListener {
+    private fun createOnClickListener(binding: ItemTrendingRepoBinding, repo: Repo, position: Int): View.OnClickListener {
         return View.OnClickListener {
-//            val directions = ReposFragmentDirections.actionReposToDetails(repo)
-//            val extras = FragmentNavigatorExtras(
-//                binding.avatar to "avatar_${repo.id}"
-//            )
-//            it.findNavController().navigate(directions, extras)
+            snapshot()[position]?.isSelectedItem?.let { snapshot()[position]?.isSelectedItem = !it }
+            notifyItemChanged(position)
         }
     }
 
@@ -79,6 +77,11 @@ class ReposAdapter : PagingDataAdapter<Repo, ReposAdapter.ViewHolder>(REPO_COMPA
                 tvRepoFork.text = repo.forksCount.toString()
 
                 ViewCompat.setTransitionName(this.ivUserAvatar, "avatar_${repo.id}")
+
+                if (repo.isSelectedItem)
+                    binding.containerTrendingRepo.setBackgroundColor(Color.parseColor("#DC746C"))
+                else
+                    binding.containerTrendingRepo.setBackgroundColor(Color.parseColor("#ffffff"))
 
                 root.setOnClickListener(listener)
             }

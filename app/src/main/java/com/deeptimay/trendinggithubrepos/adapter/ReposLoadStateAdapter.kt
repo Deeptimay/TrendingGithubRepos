@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.deeptimay.trendinggithubrepos.databinding.LayoutStatusLoadingBinding
+import com.deeptimay.trendinggithubrepos.databinding.LayoutStatusLoadingWithErrorBinding
 import com.deeptimay.trendinggithubrepos.util.hide
 import com.deeptimay.trendinggithubrepos.util.show
 
 class ReposLoadStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<ReposLoadStateAdapter.LoadStateViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder {
-        val binding = LayoutStatusLoadingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = LayoutStatusLoadingWithErrorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LoadStateViewHolder(binding)
     }
 
@@ -20,23 +20,29 @@ class ReposLoadStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<Re
         holder.bind(loadState)
     }
 
-    inner class LoadStateViewHolder(private val binding: LayoutStatusLoadingBinding) :
+    inner class LoadStateViewHolder(private val binding: LayoutStatusLoadingWithErrorBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-//            binding.btnRetry.setOnClickListener{
-//                retry.invoke()
-//            }
+            binding.lookUpButton.setOnClickListener {
+                retry.invoke()
+            }
         }
 
         fun bind(loadState: LoadState) {
             binding.apply {
-                if (loadState is LoadState.Loading) {
-                    containerShimmer.show()
-                    containerShimmer.showShimmer(true)
+                if (loadState is LoadState.Error) {
+                    binding.lookUpButton.show()
+                    binding.loadingLayout.containerShimmer.hide()
+                    binding.loadingLayout.containerShimmer.stopShimmer()
+                } else if (loadState is LoadState.Loading) {
+                    binding.lookUpButton.hide()
+                    binding.loadingLayout.containerShimmer.show()
+                    binding.loadingLayout.containerShimmer.showShimmer(true)
                 } else {
-                    containerShimmer.hide()
-                    containerShimmer.stopShimmer()
+                    binding.lookUpButton.hide()
+                    binding.loadingLayout.containerShimmer.hide()
+                    binding.loadingLayout.containerShimmer.stopShimmer()
                 }
             }
         }

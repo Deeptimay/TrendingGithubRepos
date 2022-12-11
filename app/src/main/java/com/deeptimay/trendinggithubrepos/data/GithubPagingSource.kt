@@ -18,7 +18,7 @@ class GithubPagingSource(
         val position = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val response = githubApi.getTrendingRepos(query, position, params.loadSize)
+            val response = githubApi.getTrendingRepos(query, position, 10)
             val repos = response.repo
 
             LoadResult.Page(

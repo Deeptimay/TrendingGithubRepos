@@ -14,8 +14,8 @@ class GithubRepositoryImpl @Inject constructor(private val githubApi: GithubApi)
     override fun getSearchResults(query: String) =
         Pager(
             config = PagingConfig(
-                pageSize = 20,
-                maxSize = 100,
+                pageSize = 10,
+                maxSize = 1000,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { GithubPagingSource(githubApi, query) }
